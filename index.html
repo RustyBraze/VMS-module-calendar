@@ -28,17 +28,23 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        // document.addEventListener("DOMContentLoaded", function() {
             
-            console.log("Initializing ShiftCalendar...");
+        //     console.log("Initializing ShiftCalendar...");
 
-            const calendar = new ShiftCalendar("calendar");
-            const filters = new Filter(calendar.render.bind(calendar));
-            filters.render("filters");
-            calendar.render();
+        //     const calendar = new ShiftCalendar("calendar");
+        //     const filters = new Filter(calendar.render.bind(calendar));
+        //     filters.render("filters");
+        //     calendar.render();
             
-            console.log("Complete loaded ShiftCalendar");
+        //     console.log("Complete loaded ShiftCalendar");
+        // });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const calendar = new ShiftCalendar("calendar", "filters");
+            calendar.render();
         });
+        
     </script>
 
 

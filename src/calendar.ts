@@ -5,17 +5,20 @@ import { ShiftModal } from "./modal";
 export class ShiftCalendar {
     private container: HTMLElement;
     private shifts = generateShifts();
-    private modal: ShiftModal;
+    // private modal: ShiftModal;
+    private filter: Filter;
 
     private hours = Array.from({ length: 24 }, (_, i) => i); // 24-hour format (00:00 - 23:00)
 
-    constructor(containerId: string, modalId: string) {
-        this.container = document.getElementById(containerId)!;
-        this.modal = new ShiftModal(modalId);
+    constructor(calendarId: string, filterId: string) {
+        // constructor(containerId: string, modalId: string) {
+        // this.modal = new ShiftModal(modalId);
+        this.container = document.getElementById(calendarId)!;
+        this.filter = new Filter(filterId, this.render.bind(this));
+        this.filter.updateShifts(this.shifts);
     }
 
     render(filters: Record<string, string> = {}) {
-
         if (!this.container) {
             console.error("ShiftCalendar: No container found with ID");
             return;
@@ -23,10 +26,14 @@ export class ShiftCalendar {
 
         console.log("Rendering calendar..."); // Check if the function runs
 
+        // const filteredShifts = this.shifts.filter(shift =>
+        //     (!filters.location || shift.location === filters.location) &&
+        //     (!filters.department || shift.department === filters.department) &&
+        //     (!filters.date || shift.start_time.startsWith(filters.date))
+        // );
         const filteredShifts = this.shifts.filter(shift =>
             (!filters.location || shift.location === filters.location) &&
-            (!filters.department || shift.department === filters.department) &&
-            (!filters.date || shift.start_time.startsWith(filters.date))
+            (!filters.department || shift.department === filters.department)
         );
 
         console.log("Filtered Shifts:", filteredShifts); // Check if shifts are available
@@ -77,7 +84,7 @@ export class ShiftCalendar {
             element.addEventListener("click", () => {
                 const shiftId = parseInt(element.getAttribute("data-id")!);
                 const shift = this.shifts.find(s => s.id === shiftId);
-                if (shift) this.modal.show(shift);
+                // if (shift) this.modal.show(shift);
             });
         });
 
