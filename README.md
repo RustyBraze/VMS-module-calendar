@@ -9,3 +9,6 @@ This is created from scratch and it will be lots of development...
 I also, have no clue what I am doing... I am learning as I go.
 
 **IMPORTANT** This is not production ready - at least for now
+
+
+<h1> THIS IS AN OPEN SOURCE PROJECT BUT NOT OPEN COLLABORATION PROJECT </h1>
