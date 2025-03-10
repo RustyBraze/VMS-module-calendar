@@ -1,0 +1,31 @@
+{
+  "name": "vms-module-calendar",
+  "version": "1.0.0",
+  "description": "This module is a Typescript/Javascript calendar module to be used inside the VMS (Volunteer Management System).",
+  "main": "dist/calendar.min.js",
+  "scripts": {
+    "build": "vite build --mode development",
+    "build2": "vite build --config vite.config.js",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github-rusty:RustyBraze/VMS-module-calendar.git"
+  },
+  "keywords": [
+    "calendar",
+    "event management",
+    "shift planning",
+    "typescript"
+  ],
+  "author": "Rusty Braze",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "terser": "^5.39.0"
+  }
+}

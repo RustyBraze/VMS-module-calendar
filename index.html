@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Shift Calendar</title>
+    <script src="./dist/calendar.min.js" defer></script>
+    <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+    <div id="filters"></div>
+    <div id="calendar"></div>
+    <!-- <div id="shiftModal" class="modal"></div> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            console.log("Initializing ShiftCalendar...");
+
+            const calendar = new ShiftCalendar("calendar");
+            const filters = new Filter(calendar.render.bind(calendar));
+            filters.render("filters");
+            calendar.render();
+            
+            console.log("Complete loaded ShiftCalendar");
+        });
+    </script>
+</body>
+</html>

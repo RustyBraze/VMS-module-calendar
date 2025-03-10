@@ -1,0 +1,39 @@
+.timeline {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.time-header {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 5px;
+}
+
+.time-slot {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.shifts-container {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    gap: 5px;
+    height: 60px;
+}
+
+.shift-block {
+    padding: 10px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
