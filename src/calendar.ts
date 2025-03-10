@@ -84,12 +84,31 @@ export class ShiftCalendar {
 
 
         // Insert content into the container
+        // this.container.innerHTML = `
+        //     <div class="timeline">
+        //         <div class="time-header">${timeHeaderHtml}</div>
+        //         <div class="shifts-container">${shiftsHtml}</div>
+        //     </div>
+        // `;
+
+
         this.container.innerHTML = `
-            <div class="timeline">
-                <div class="time-header">${timeHeaderHtml}</div>
-                <div class="shifts-container">${shiftsHtml}</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="timeline border rounded p-3 bg-light">
+                        <div class="row g-0">
+                            ${this.hours.map(hour => `<div class="col text-center bg-secondary text-white py-1 border">${hour}:00</div>`).join('')}
+                        </div>
+                        <div class="row g-0 shifts-container position-relative">
+                            ${filteredShifts.map(shift => this.renderShiftBlock(shift)).join('')}
+                        </div>
+                    </div>
+                </div>
             </div>
-        `;
+        </div>
+    `;
+    
 
         console.log("Calendar rendered successfully.");
     }
@@ -97,14 +116,27 @@ export class ShiftCalendar {
     private renderShiftBlock(shift: any): string {
         const startHour = new Date(shift.start_time).getHours();
         const endHour = new Date(shift.end_time).getHours();
-        const duration = endHour - startHour;
+        // const duration = endHour - startHour;
+        const duration = Math.max(1, endHour - startHour);
+
+        // Convert to Bootstrap grid positioning
+        const startColumn = startHour + 1; 
+        const widthColumns = duration;
+
+        // return `
+        //     <div class="shift-block" style="grid-column: ${startHour + 1} / span ${duration}; background-color: ${shift.available ? 'green' : 'red'};">
+        //         <strong>${shift.title}</strong><br>
+        //         ${shift.applied}/${shift.total} applied
+        //     </div>
+        // `;
 
         return `
-            <div class="shift-block" style="grid-column: ${startHour + 1} / span ${duration}; background-color: ${shift.available ? 'green' : 'red'};">
-                <strong>${shift.title}</strong><br>
-                ${shift.applied}/${shift.total} applied
-            </div>
+        <div class="position-absolute shift-block ${shift.available ? 'bg-success' : 'bg-danger'} text-white p-2"
+            style="left: ${startColumn * (100 / 24)}%; width: ${widthColumns * (100 / 24)}%;">
+            <strong>${shift.title}</strong> (${shift.applied}/${shift.total})
+        </div>
         `;
+
     }
 }
 
